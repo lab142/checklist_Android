@@ -65,7 +65,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/tbn_google_login"
+                android:id="@+id/btn_google_login"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:background="@drawable/google_background"
