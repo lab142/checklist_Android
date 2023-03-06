@@ -6,17 +6,21 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.lab42.checklist.R;
 import com.lab42.checklist.ui.cheklists.RV_TrailerChecklist;
 import com.lab42.checklist.ui.cheklists.TravelTrailerChecklist;
+import com.lab42.checklist.ui.login.LandingPage;
 
 public class ChecklistOptions extends AppCompatActivity {
 
     private AlertDialog.Builder builder;
     LinearLayout travelTrailer;
     LinearLayout rvTrailer;
+    ImageButton btnUserIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,8 @@ public class ChecklistOptions extends AppCompatActivity {
 
         travelTrailer =  findViewById(R.id.ll_trailer_option);
         rvTrailer = findViewById(R.id.ll_rv_option);
+        btnUserIcon = findViewById(R.id.img_userId);
+
         builder = new AlertDialog.Builder(this);
 
         travelTrailer.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +44,14 @@ public class ChecklistOptions extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rvTrailerOption();
+            }
+        });
+
+        btnUserIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(ChecklistOptions.this, LandingPage.class));
             }
         });
     }
